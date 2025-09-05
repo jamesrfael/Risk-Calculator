@@ -13,22 +13,33 @@
 
   <main>
     <div class="input-container">
-      <label for="entry">Entry Price (E):</label>
-      <input type="number" id="entry" placeholder="Enter entry price" value="1.00">
+      <label for="entry">Entry Price</label>
+      <div class="input-group">
+        <span class="prefix">$</span>
+        <input type="number" id="entry" placeholder="0.00" value="1.00">
+      </div>
 
-      <label for="stop">Stop-Loss Price (S):</label>
-      <input type="number" id="stop" placeholder="Enter stop-loss price" value="0.49">
+      <label for="stop">Stop-Loss Price</label>
+      <div class="input-group">
+        <span class="prefix">$</span>
+        <input type="number" id="stop" placeholder="0.00" value="0.49">
+      </div>
 
-      <label for="risk">Risk Amount $ (R):</label>
-      <input type="number" id="risk" placeholder="Enter risk amount" value="1.00">
+      <label for="risk">Risk Amount</label>
+      <div class="risk-wrapper">
+        <div class="input-group">
+          <span class="prefix">$</span>
+          <input type="number" id="risk" placeholder="0.00" value="1.00">
+        </div>
+        <button id="set-default-btn">Set Default</button>
+      </div>
+
+      <button id="calculate-btn">Calculate</button>
     </div>
 
-    <button id="calculate-btn">Calculate</button>
-
     <div class="output-container">
-      <h2>Calculated Outputs:</h2>
-      <p>Risk per Unit: <span id="risk-per-unit">0.51</span></p>
-      <p>Margin Needed: <span id="margin-needed">1.96</span></p>
+      <h2>Margin</h2>
+      <p id="margin-needed">$0.00</p>
     </div>
   </main>
 

@@ -1,18 +1,36 @@
-document.getElementById("calculate-btn").addEventListener("click", function() {
-    // Get user inputs
-    const entryPrice = parseFloat(document.getElementById("entry").value);
-    const stopPrice = parseFloat(document.getElementById("stop").value);
-    const riskAmount = parseFloat(document.getElementById("risk").value);
-  
-    // Calculate risk per unit
-    const riskPerUnit = Math.abs(entryPrice - stopPrice);
-  
-    // Calculate margin needed
-    const positionSize = riskAmount / riskPerUnit;
-    const marginNeeded = positionSize * entryPrice;
-  
-    // Display the results
-    document.getElementById("risk-per-unit").textContent = riskPerUnit.toFixed(2);
-    document.getElementById("margin-needed").textContent = marginNeeded.toFixed(2);
-  });
-  
+const entryInput = document.getElementById("entry");
+const stopInput = document.getElementById("stop");
+const riskInput = document.getElementById("risk");
+const calculateBtn = document.getElementById("calculate-btn");
+const marginNeededEl = document.getElementById("margin-needed");
+const setDefaultBtn = document.getElementById("set-default-btn");
+
+// Save default risk
+setDefaultBtn.addEventListener("click", () => {
+  localStorage.setItem("defaultRisk", riskInput.value);
+  alert("Default risk amount set to $" + riskInput.value);
+});
+
+// Load saved default risk
+window.addEventListener("load", () => {
+  const savedRisk = localStorage.getItem("defaultRisk");
+  if (savedRisk) riskInput.value = savedRisk;
+});
+
+// Calculate Margin Needed
+calculateBtn.addEventListener("click", () => {
+  const entry = parseFloat(entryInput.value);
+  const stop = parseFloat(stopInput.value);
+  const risk = parseFloat(riskInput.value);
+
+  if (isNaN(entry) || isNaN(stop) || isNaN(risk) || entry <= stop) {
+    marginNeededEl.textContent = "Invalid Input";
+    return;
+  }
+
+  const riskPerUnit = entry - stop;
+  const positionSize = risk / riskPerUnit;
+  const marginNeeded = positionSize * entry;
+
+  marginNeededEl.textContent = `$${marginNeeded.toFixed(2)}`;
+});

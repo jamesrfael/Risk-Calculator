@@ -1,67 +1,152 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
+    background-color: #0D0F1A; /* dark background */
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
   header {
-    background-color: #4F81BD;
-    color: white;
-    padding: 20px;
     width: 100%;
+    padding: 20px;
     text-align: center;
+    background-color: #0D0F1A; /* match body */
+    border-bottom: 1px solid #1f2235;
   }
   
-  h1 {
+  header h1 {
     margin: 0;
+    font-size: 1.8rem;
+    color: white; /* simple white */
   }
   
   .input-container {
     margin-top: 30px;
-    width: 300px;
-    background-color: white;
+    width: 90%;
+    max-width: 350px;
+    background-color: #141625; /* dark card */
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
   }
   
   label {
     font-size: 14px;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    color: #ccc;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-weight: bold;
   }
   
   input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button {
-    background-color: #4F81BD;
-    color: white;
-    padding: 10px;
+    height: 48px;              /* fixed height */
+    padding: 0 28px;           /* horizontal padding only */
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #1F2235;
+    color: white;
+    outline: none;
   }
   
-  button:hover {
-    background-color: #3e6d99;
+  .risk-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: stretch;       /* force children to equal height */
+  }
+  
+  .risk-wrapper .input-group {
+    flex: 1;
+  }
+  
+  /* Reset default button look */
+  button {
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  /* Main action button (Calculate) */
+  #calculate-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    margin-top: 10px;
+  }
+  
+  #calculate-btn:hover {
+    background: linear-gradient(90deg, #7b2ff7, #4facfe);
+  }
+  
+  /* Secondary action button (Set Default) */
+  #set-default-btn {
+    height: 48px;              /* match input height */
+    border-radius: 10px;
+    font-size: 0.9rem;
+    background-color: #1F2235; /* match input field */
+    color: #ccc;
+    font-weight: normal;
+    padding: 0 16px;
+  }
+  
+  #set-default-btn:hover {
+    background-color: #2a2e45;
   }
   
   .output-container {
     margin-top: 30px;
     text-align: center;
+    background-color: #141625;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 350px;
   }
   
-  h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
+  .output-container h2 {
+    font-size: 16px;
+    color: #aaa;
+    margin-bottom: 6px;
+  }
+  
+  #margin-needed {
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* Remove arrows from number inputs (Chrome, Edge, Safari) */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Remove arrows from number inputs (Firefox) */
+  input[type=number] {
+    -moz-appearance: textfield;
   }
   
